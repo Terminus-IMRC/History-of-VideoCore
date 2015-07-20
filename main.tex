@@ -1,0 +1,69 @@
+\documentclass{jsarticle}
+
+\title{VideoCore 開発史}
+\author{杉崎 行優}
+\date{}
+
+\begin{document}
+
+\maketitle
+\abstract{
+VideoCore は Broadcom Corporation が設計・開発し販売しているモバイル向け GPU である。
+近年低価格コンピュータである Raspberry Pi に
+VideoCore IV が搭載されたことにより注目を浴びた。
+
+本記事では文献を参考にし、VideoCore の開発史を記す。
+本記事は内容の大半を文献\cite{mi35}より引用している。
+}
+
+\section{VideoCore I}
+VideoCore は初め、英国の University of Cambridge の学生により
+2000 年に起業された Alphamosaic という会社が発案した。
+当初は映像圧縮のためのチップがほとんど開発されておらず、需要があると考えたためである。
+最初のバージョンである VideoCore I は画像を処理する機構とスタティック RAM とその他周辺機器のための機構を備えていた。
+VideoCore I は CIF 形式 (サイズは 352 $\times$ 288) の映像のデコーディングをサポートした。
+
+\section{VideoCore II}
+VideoCore II は VideoCore I で問題とされた電力消費の多さとメモリ容量の少なさを修正する形で開発された。
+VideoCore II では 1 クロックで 2 個の命令を実行できるように改良されたほか、
+VGA 形式 (サイズは 640 $\times$ 480) の映像のデコーディングをサポートした。
+
+VideoCore II は 2004 年に製造が開始された。
+
+VideoCore I や VideoCore II には 64 $\times$ 64 個ものレジスタが備えられており、
+これは映像に対する処理を行いやすくした。
+
+\section{VideoCore III}
+2004年、Alphamosaic は Broadcom Corporation に吸収された。
+
+VideoCore III は 2004 年に設計開始され、2005 年には試験用ボードが出来上がっていた。
+また、2007 年には製品化された。
+
+VideoCore III は H.264、MPEG2、MPEG4、720p (1280 $\times$ 720) の映像のデコーディングのほか、
+MPEG4、H.264 の映像のエンコーディングもサポートした。
+VideoCore III には 3D pipeline という、3D のテクスチャを読み書きするための機構が搭載された。
+
+Raspberry Pi は VideoCore IV を搭載しているが、VideoCore III を搭載した試験用ボードも製作された。
+
+\section{VideoCore IV}
+VideoCore IV は 2009 年に試験用ボードが出来上がった。
+
+VideoCore IV では画像を特定の大きさのタイルに区切り、画像をタイルごとに更新する仕組みが導入された。
+この機構によって VideoCore III と比較してメモリ転送量が格段に減少した。
+
+また、VideoCore IV には QPU という、グラフィック意外の一般的な用途にも使うことができるプロセッサを搭載した。
+QPU は 2007 年に提案され、2008 年に設計された。
+
+VideoCore IV は 1080p (1920 $\times$ 1080) の映像のエンコーディングとデコーディングのほか、
+OpenGL ES 2.0 もサポートした。
+
+Broadcom Corporation は 2014 年に VideoCore IV のマニュアルとグラフィックドライバのソースコードを公開した。
+これは他の ARM や GPU に例を見ない試みである。
+
+\section{VideoCore V}
+Raspberry Pi Foundation を創始し、現在は Broadcom Corporation の社員である\cite{mi1} Eben Upton は、現在 VideoCore V も開発されていると述べている。
+
+\bibliographystyle{unsrt}
+\bibliography{ref}
+
+\end{document}
